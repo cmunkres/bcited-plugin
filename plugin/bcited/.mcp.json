@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "bcited": {
+      "type": "http",
+      "url": "https://mcp.bcited.ai/public"
+    },
+    "bcited-account": {
+      "type": "http",
+      "url": "https://mcp.bcited.ai/mcp"
+    }
+  }
+}

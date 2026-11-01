@@ -1,0 +1,34 @@
+{
+  "name": "bcited",
+  "owner": {
+    "name": "b/cited",
+    "url": "https://bcited.ai"
+  },
+  "metadata": {
+    "description": "Plugins from b/cited, the AEO citation tracker at bcited.ai.",
+    "version": "1.2.2"
+  },
+  "plugins": [
+    {
+      "name": "bcited",
+      "source": "./plugin/bcited",
+      "description": "AEO toolkit: /bcited:scan grades any URL for AI-citation readiness, /bcited:explain and /bcited:fix turn the gaps into patches, /bcited:leaderboard, /bcited:citations, /bcited:readiness and /bcited:glossary read b/cited's public data, and /bcited:score, /bcited:runs, /bcited:competitors, /bcited:run and /bcited:brief read your own account. No API key for the public skills.",
+      "version": "1.2.2",
+      "author": {
+        "name": "b/cited",
+        "url": "https://bcited.ai"
+      },
+      "homepage": "https://bcited.ai/claude-skill",
+      "license": "MIT",
+      "keywords": [
+        "aeo",
+        "seo",
+        "citation",
+        "llms.txt",
+        "schema",
+        "site-audit"
+      ],
+      "category": "productivity"
+    }
+  ]
+}

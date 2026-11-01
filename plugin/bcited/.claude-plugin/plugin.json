@@ -1,0 +1,25 @@
+{
+  "name": "bcited",
+  "version": "1.2.2",
+  "description": "Answer Engine Optimization (AEO) from b/cited: twelve skills. Scan any public URL for the signals that decide whether ChatGPT, Claude and Perplexity cite it, explain the gaps, and turn a page into a patch list; read the public AEO readiness leaderboard, the weekly citation panel and the glossary; and, with a free b/cited account, your own visibility score, citation runs, competitors, on-demand runs and content briefs. Bundles b/cited's MCP servers. Rule-based scanner, no API key for the public skills.",
+  "author": {
+    "name": "b/cited",
+    "url": "https://bcited.ai"
+  },
+  "homepage": "https://bcited.ai/claude-skill",
+  "repository": "https://github.com/cmunkres/bcited-plugin",
+  "privacyPolicyUrl": "https://bcited.ai/privacy",
+  "icon": ".claude-plugin/icon.png",
+  "license": "MIT",
+  "keywords": [
+    "aeo",
+    "answer-engine-optimization",
+    "seo",
+    "citation",
+    "llms.txt",
+    "schema",
+    "structured-data",
+    "e-e-a-t",
+    "site-audit"
+  ]
+}

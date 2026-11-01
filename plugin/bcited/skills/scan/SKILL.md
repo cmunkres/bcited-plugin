@@ -1,7 +1,7 @@
 ---
 name: scan
 description: "Run a live Answer Engine Optimization (AEO) and SEO readiness audit on a public URL using b/cited's rule-based scanner. Returns an A–F grade, a 9-category breakdown, and a prioritized fix list. Use when the user gives a URL and wants to know whether AI engines (ChatGPT, Claude, Perplexity) can cite it, or asks for an AEO, SEO, or site readiness audit."
-allowed-tools: Bash(curl *)
+allowed-tools: Bash(curl -s -X POST https://bcited.ai/api/skill/scan *)
 ---
 
 # AEO audit of a live URL
@@ -45,12 +45,10 @@ When invoked with a URL (`/bcited:scan https://example.com`, or a request in pro
 
 **Otherwise**, call the API directly:
 
-1. Run:
+1. Run exactly this, on one line, with only `<url>` replaced (the skill is allowed this one command and nothing else):
 
 ```bash
-curl -s -X POST https://bcited.ai/api/skill/scan \
-  -H "Content-Type: application/json" \
-  -d "{\"url\": \"<url>\"}"
+curl -s -X POST https://bcited.ai/api/skill/scan -H "Content-Type: application/json" -d "{\"url\": \"<url>\"}"
 ```
 
 2. Parse the JSON response. It carries `grade`, `overall_score`, `summary`, and `categories`, each category with a `score` and a list of checks (`check`, `severity`, `detail`, `docs`). The full schema is in [references/api-response.md](references/api-response.md).

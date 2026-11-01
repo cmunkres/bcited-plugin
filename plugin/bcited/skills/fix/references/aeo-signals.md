@@ -135,8 +135,10 @@ Disallow: /
 
 **Check current status**:
 
+Open `https://yourdomain.com/robots.txt` and look for `GPTBot`, `ClaudeBot`, `PerplexityBot` and `Google-Extended` stanzas, or fetch it:
+
 ```bash
-curl -s https://yourdomain.com/robots.txt | grep -iE "gptbot|claudebot|perplexity|google-extended"
+curl -s https://yourdomain.com/robots.txt
 ```
 
 ---
@@ -384,24 +386,21 @@ const articleSchema = {
 After implementing, verify each signal with:
 
 ```bash
-# llms.txt
-curl -s https://yourdomain.com/llms.txt | head -5
+# llms.txt: plain text, starts with "# Site Name"
+curl -s https://yourdomain.com/llms.txt
 
 # ai.txt
 curl -s https://yourdomain.com/ai.txt
 
-# robots.txt AI crawlers
-curl -s https://yourdomain.com/robots.txt | grep -iE "gptbot|claudebot|perplexity"
+# robots.txt: look for GPTBot, ClaudeBot, PerplexityBot stanzas
+curl -s https://yourdomain.com/robots.txt
 
 # JSON-LD validation
 # Use Google's Rich Results Test: https://search.google.com/test/rich-results
 # Or paste your page into: https://validator.schema.org
-
-# Run a full AEO audit
-curl -s -X POST https://bcited.ai/api/skill/scan \
-  -H "Content-Type: application/json" \
-  -d '{"url":"https://yourdomain.com"}' | jq '.categories.aeo'
 ```
+
+Then run a full AEO audit with `/bcited:scan https://yourdomain.com` and read the `aeo` category.
 
 ---
 

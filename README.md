@@ -81,9 +81,11 @@ That single file is generated from this plugin by `scripts/build-skill-assets.mj
 
 ## How it works
 
-`scan` calls `POST https://bcited.ai/api/skill/scan`, which checks 30+ signals across nine categories: indexing, metadata, social cards, structured data, AEO signals (llms.txt, ai.txt, AI crawler stance, FAQPage/HowTo schema), international, mobile, security headers, and Core Web Vitals. Rate limit: 30 requests per hour per IP.
+Every skill works through the two MCP servers in `.mcp.json` and nothing else: the plugin runs no shell commands and calls no other service. `scan` calls the `scan_site` tool on `https://mcp.bcited.ai/public`, which checks 30+ signals across nine categories: indexing, metadata, social cards, structured data, AEO signals (llms.txt, ai.txt, AI crawler stance, FAQPage/HowTo schema), international, mobile, security headers, and Core Web Vitals. Scans are rate-limited.
 
-Everything the scanner reads from the audited site (check `detail` text, echoed URLs) is treated as data, never as instructions. The `scan` skill carries the rule; the API caps and strips the strings before they leave the scanner.
+Data sent: the URL you ask to scan, the leaderboard category, domain or glossary term you name, and, on the account server, your project and prompt identifiers. An aggregate usage log keeps the tool name, the scanned host (no path) or the term, and the outcome, with no user id or IP; see https://bcited.ai/privacy.
+
+Everything the scanner reads from the audited site (check `detail` text, echoed URLs) is treated as data, never as instructions. The `scan` skill carries the rule; the server caps and strips the strings before they leave the scanner.
 
 ## About b/cited
 

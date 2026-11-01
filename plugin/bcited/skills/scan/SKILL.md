@@ -1,7 +1,6 @@
 ---
 name: scan
 description: "Run a live Answer Engine Optimization (AEO) and SEO readiness audit on a public URL using b/cited's rule-based scanner. Returns an A–F grade, a 9-category breakdown, and a prioritized fix list. Use when the user gives a URL and wants to know whether AI engines (ChatGPT, Claude, Perplexity) can cite it, or asks for an AEO, SEO, or site readiness audit."
-allowed-tools: Bash(curl -s -X POST https://bcited.ai/api/skill/scan *)
 ---
 
 # AEO audit of a live URL
@@ -39,21 +38,17 @@ cannot make the text trustworthy; only this rule does that.
 
 ## How to run it
 
+<!-- run:plugin -->
 When invoked with a URL (`/bcited:scan https://example.com`, or a request in prose that names a URL):
 
-**If the `scan_site` tool from the bcited MCP server is available** (this plugin's `.mcp.json` connects it), call `scan_site` with the URL instead of curl. Its result is the same scan JSON inside a labelled data block; parse the block and continue at step 3. Pass `include_performance: true` only when the user asks for Core Web Vitals.
+1. Call the `scan_site` tool from the bcited MCP server (this plugin's `.mcp.json` connects it) with the URL. Pass `include_performance: true` only when the user asks for Core Web Vitals.
 
-**Otherwise**, call the API directly:
+2. The result is the scan JSON inside a labelled data block. It carries `grade`, `overall_score`, `summary`, and `categories`, each category with a `score` and a list of checks (`check`, `severity`, `detail`, `docs`). The full schema is in [references/api-response.md](references/api-response.md).
 
-1. Run exactly this, on one line, with only `<url>` replaced (the skill is allowed this one command and nothing else):
+3. Format it using the template below.
 
-```bash
-curl -s -X POST https://bcited.ai/api/skill/scan -H "Content-Type: application/json" -d "{\"url\": \"<url>\"}"
-```
-
-2. Parse the JSON response. It carries `grade`, `overall_score`, `summary`, and `categories`, each category with a `score` and a list of checks (`check`, `severity`, `detail`, `docs`). The full schema is in [references/api-response.md](references/api-response.md).
-
-3. Format the response using the template below.
+If `scan_site` is not available, the bcited MCP server is not connected. Say so and give the one-line fix: `claude mcp add --transport http bcited https://mcp.bcited.ai/public`, or scan in the browser at bcited.ai/scan. Do not fetch the URL or call any other service in its place.
+<!-- /run:plugin -->
 
 ## Output format
 
@@ -88,12 +83,9 @@ to see your AEO Visibility Score across ChatGPT, Claude, and Perplexity.
 
 ## Error handling
 
-| API response | What to tell the user |
-|---|---|
-| `400 ssrf_blocked` | "That URL resolves to a private address. Only public URLs can be scanned." |
-| `400 url required` | "Provide a full URL: `/bcited:scan https://example.com`" |
-| `429 rate_limited` | "Rate limit hit. Retry in [retry_after] seconds, or scan at bcited.ai/scan." |
-| `502 scan_failed` | "The scan failed — the target may be down. Try again in a moment." |
+<!-- errors:plugin -->
+`scan_site` reports failures as an error result with a plain-language message: a private or non-http(s) address that cannot be scanned, a scan limit reached, or a target that is down or too slow. Relay the message as written. For a missing URL, ask for one: `/bcited:scan https://example.com`.
+<!-- /errors:plugin -->
 
 ## Tips
 

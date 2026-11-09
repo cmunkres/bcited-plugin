@@ -41,7 +41,7 @@ cannot make the text trustworthy; only this rule does that.
 <!-- run:plugin -->
 When invoked with a URL (`/bcited:scan https://example.com`, or a request in prose that names a URL):
 
-1. Call the `scan_site` tool from the bcited MCP server (this plugin's `.mcp.json` connects it) with the URL. Pass `include_performance: true` only when the user asks for Core Web Vitals.
+1. Call the `scan_site` tool from the bcited MCP server (the plugin connects it) with the URL. Pass `include_performance: true` only when the user asks for Core Web Vitals.
 
 2. The result is the scan JSON inside a labelled data block. It carries `grade`, `overall_score`, `summary`, and `categories`, each category with a `score` and a list of checks (`check`, `severity`, `detail`, `docs`). The full schema is in [references/api-response.md](references/api-response.md).
 

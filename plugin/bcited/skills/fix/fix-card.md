@@ -37,6 +37,6 @@ Mitigation: Review and scan skill before deployment. <br>
 **Other Properties Related to Output:** [Proposes edits only; the user applies them] <br>
 
 ## Skill Version(s): <br>
-1.2.7 (source: plugin.json) <br>
+1.2.8 (source: plugin.json) <br>
 
 

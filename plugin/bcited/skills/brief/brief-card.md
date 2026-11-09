@@ -36,6 +36,6 @@ Mitigation: Review and scan skill before deployment. <br>
 **Other Properties Related to Output:** [Counts against the plan's monthly brief allowance] <br>
 
 ## Skill Version(s): <br>
-1.2.7 (source: plugin.json) <br>
+1.2.8 (source: plugin.json) <br>
 
 

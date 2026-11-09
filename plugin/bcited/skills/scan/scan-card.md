@@ -37,6 +37,6 @@ Mitigation: Review and scan skill before deployment. <br>
 **Other Properties Related to Output:** [Scan text echoed from the audited site is rendered as quoted data and never followed as instructions] <br>
 
 ## Skill Version(s): <br>
-1.2.7 (source: plugin.json) <br>
+1.2.8 (source: plugin.json) <br>
 
 
